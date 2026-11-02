@@ -1,0 +1,36 @@
+{
+  "name": "local-ai-chat",
+  "productName": "Local AI Chat",
+  "version": "1.0.0",
+  "description": "ChatGPT-style desktop app for local Ollama models",
+  "main": "main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron . --no-sandbox",
+    "dist": "electron-builder --linux AppImage deb"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "vn.makeai.localai",
+    "productName": "Local AI Chat",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "maintainer": "tvhuy@makeai.vn"
+    }
+  },
+  "dependencies": {
+    "mammoth": "^1.13.0",
+    "pdf-parse": "^1.1.1"
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local AI Chat</title>
+  <link rel="icon" href="logo.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="side-top">
+      <button id="newChat" class="side-btn">✎ Đoạn chat mới</button>
+      <input id="search" type="search" placeholder="Tìm đoạn chat...">
+    </div>
+    <nav id="history"></nav>
+    <div class="side-bottom">
+      <button id="settingsBtn" class="side-btn">⚙ Cài đặt</button>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <button id="toggleSide" title="Ẩn/hiện thanh bên">☰</button>
+      <select id="modelSel"></select>
+      <span id="capBadge" class="badge"></span>
+      <button id="powerBtn" class="power" title="Bật/tắt model (nạp vào / giải phóng bộ nhớ)">⏻ …</button>
+      <span class="spacer"></span>
+      <button id="exportBtn" title="Xuất đoạn chat ra file .md">⤓</button>
+    </header>
+    <section id="messages"><div id="msgInner"></div></section>
+    <footer>
+      <div id="chips"></div>
+      <form id="composer">
+        <button id="attach" type="button" title="Đính kèm ảnh / tệp">＋</button>
+        <input id="file" type="file" multiple hidden>
+        <textarea id="input" rows="1" placeholder="Nhắn tin cho AI..." autofocus></textarea>
+        <button id="send" type="submit" title="Gửi">↑</button>
+      </form>
+      <p class="hint">AI chạy hoàn toàn trên máy bạn. Có thể mắc lỗi — hãy kiểm tra thông tin quan trọng.</p>
+    </footer>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h3>Cài đặt</h3>
+      <label>Ngôn ngữ trả lời
+        <select id="lang">
+          <option value="vi">Tiếng Việt (có dấu)</option>
+          <option value="en">English</option>
+          <option value="auto">Tự động theo câu hỏi</option>
+        </select>
+      </label>
+      <label>Chỉ dẫn hệ thống (System prompt)
+        <textarea id="sysPrompt" rows="4"></textarea>
+      </label>
+      <label>Nhiệt độ (temperature): <span id="tempVal"></span>
+        <input id="temp" type="range" min="0" max="2" step="0.1">
+      </label>
+      <label>Độ dài ngữ cảnh (num_ctx) — tăng khi đọc file dài, tốn RAM hơn
+        <select id="ctx"><option>4096</option><option>8192</option><option>16384</option><option>32768</option></select>
+      </label>
+      <label>Giao diện
+        <select id="theme"><option value="dark">Tối</option><option value="light">Sáng</option></select>
+      </label>
+      <div class="row">
+        <button id="clearAll" type="button" class="danger">Xoá toàn bộ lịch sử</button>
+        <button value="ok" class="primary">Xong</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
