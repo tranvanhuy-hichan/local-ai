@@ -4,6 +4,8 @@ const fs = require('fs');
 
 // Chạy qua XWayland (ổn định); bộ gõ lấy từ GTK_IM_MODULE/XMODIFIERS của hệ thống.
 app.commandLine.appendSwitch('ozone-platform', 'x11');
+// Bản AppImage không có chrome-sandbox setuid nên cần tắt sandbox (giống `npm start`).
+app.commandLine.appendSwitch('no-sandbox');
 
 // NVIDIA + Wayland hay làm cửa sổ Electron trắng xoá; UI nhẹ nên tắt GPU cho giao diện
 // (Ollama vẫn dùng GPU bình thường để chạy model).
